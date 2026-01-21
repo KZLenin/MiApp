@@ -12,6 +12,9 @@
         android:name="android.hardware.camera"
         android:required="false" />
 
+    <!-- Permiso de vibración -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <!-- Para guardar fotos (Android 12 y menores) -->
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
@@ -25,9 +28,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MiApp">
+        android:theme="@style/Theme.MiApp"
+        tools:targetApi="33">
 
-        <!-- FileProvider -->
+        <!-- FileProvider (OBLIGATORIO para cámara) -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
@@ -38,7 +42,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <!-- Main -->
+        <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -50,14 +54,14 @@
             </intent-filter>
         </activity>
 
-        <!-- Location -->
+        <!-- Location Activity -->
         <activity
             android:name=".LocationActivity"
             android:exported="false"
             android:label="Ubicación"
             android:theme="@style/Theme.MiApp" />
 
-        <!-- Camera -->
+        <!-- Camera Activity -->
         <activity
             android:name=".CameraActivity"
             android:exported="false"
